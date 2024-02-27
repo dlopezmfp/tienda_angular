@@ -6,9 +6,9 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const promise_mysql_1 = __importDefault(require("promise-mysql"));
 const data_1 = __importDefault(require("./data"));
 const pool = promise_mysql_1.default.createPool(data_1.default.database);
-pool.getConnection()
+pool.getConnection() //conecta a la base de datos
     .then((connection) => {
-    connection.release();
-    console.log('DB is connected');
+    pool.releaseConnection(connection);
+    console.log('DB está conectada');
 });
-exports.default = pool;
+exports.default = pool; //exporta el objeto
